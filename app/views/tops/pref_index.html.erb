@@ -1,0 +1,21 @@
+<% provide(:title, "#{@prefecture.name}一覧") %>
+<div class="container" style="width: 90%;">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <ul class="media-list">
+        <% @prefecture.shops.each do |shop| %>
+        <h3><%= shop.city.name %></h3>
+         <li class="media">
+           <%= link_to show_path(shop), class: 'media-left' do %>
+             <%= shop.name %>
+           <% end %>
+           <div class="media-body">
+             <h4 class="media-heading">見出し</h4>
+             内容これはサンプル
+           </div>
+         </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

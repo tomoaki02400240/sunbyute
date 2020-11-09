@@ -1,0 +1,4 @@
+<%= @shop.name %> 
+<% if logged_in_shop? %>
+<%= link_to 'ログアウト', shop_logout_path, method: :delete, data: { confirm: '本当にログアウトしますか？' } %>
+<% end %>

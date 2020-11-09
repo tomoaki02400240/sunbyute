@@ -1,0 +1,2 @@
+module SearchParmacyHelper
+end
