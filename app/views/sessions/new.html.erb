@@ -6,7 +6,7 @@
           自サイト編集ログイン
         </div>
         <div class="panel panel-body">
-         <%= form_with(url: login_path, scope: :sessions, method: :post, local: true) do |f| %>
+         <%= form_with(url: login_path, scope: :session, method: :post, local: true) do |f| %>
            <div class="form-group">
              <%= f.label :email, 'メールアドレス' %>
              <%= f.email_field :email, class: 'form-control' %>

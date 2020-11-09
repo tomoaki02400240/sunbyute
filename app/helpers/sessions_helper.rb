@@ -1,13 +1,18 @@
 module SessionsHelper
   def login(s)
       session[:user_id] = s.id
+      binding.remote_pry
     end
     
     def current_shop
+      #binding.remote_pry
       @current_shop ||=Shop.find_by(id: session[:user_id])
+
     end
     
     def authorize_shop
+      #binding.remote_pry
+      flash[:alert] = "ログインできませんでした"
       redirect_to root_path unless logged_in_shop?
     end
     

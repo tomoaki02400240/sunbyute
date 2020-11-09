@@ -1,5 +1,6 @@
 class Shop < ApplicationRecord
   before_save { self.email.downcase }
+  
   belongs_to :prefecture
   belongs_to :city
   EMAIL_VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
