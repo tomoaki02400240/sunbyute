@@ -16,5 +16,8 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    shop_log_out
+    redirect_to root_path
+    flash.now[:danger] = "ログアウトしました"
   end
 end

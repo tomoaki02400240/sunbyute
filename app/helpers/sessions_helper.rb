@@ -1,7 +1,7 @@
 module SessionsHelper
   def login(s)
       session[:user_id] = s.id
-      binding.remote_pry
+    
     end
     
     def current_shop
@@ -12,7 +12,6 @@ module SessionsHelper
     
     def authorize_shop
       #binding.remote_pry
-      flash[:alert] = "ログインできませんでした"
       redirect_to root_path unless logged_in_shop?
     end
     
@@ -23,5 +22,6 @@ module SessionsHelper
     def shop_log_out
       session.delete(:user_id)
       @current_shop = nil
+     
     end
 end
