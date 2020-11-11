@@ -5,9 +5,9 @@ module SessionsHelper
     end
     
     def current_shop
-      #binding.remote_pry
+      
       @current_shop ||=Shop.find_by(id: session[:user_id])
-
+      #binding.pry
     end
     
     def authorize_shop
@@ -22,5 +22,12 @@ module SessionsHelper
     def shop_log_out
       session.delete(:user_id)
       @current_shop = nil
+    end
+
+    def correct_user
+      @shop = Shop.find_by(id: params[:id])
+      unless @shop.id === current_shop.id
+        redirect_to root_path
+      end
     end
 end
