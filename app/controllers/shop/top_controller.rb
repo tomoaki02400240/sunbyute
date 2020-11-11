@@ -15,8 +15,9 @@ class Shop::TopController < ApplicationController
         redirect_to show_path(@shop)
       else
         flash[:danger] = "だめ"
-        render 'new'
+        redirect_to shop_new_path
       end
+      
     end
     
     def edit
@@ -27,7 +28,7 @@ class Shop::TopController < ApplicationController
     private 
     
     def shop_params
-      params.require(:shop).permit(:name, :email, :password, :password_confirmation)
+      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id, :shop_img)
     end
     
    

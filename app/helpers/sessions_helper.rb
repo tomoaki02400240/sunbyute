@@ -22,6 +22,5 @@ module SessionsHelper
     def shop_log_out
       session.delete(:user_id)
       @current_shop = nil
-     
     end
 end

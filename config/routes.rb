@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     get '/new', to: 'top#new'
     get '/dashboard/:id', to: 'top#edit', as: :dashboard
-    
+    post '/create', to: 'top#create', as: :create
   end
   
   namespace :admin do
