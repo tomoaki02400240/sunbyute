@@ -1,7 +1,7 @@
 class Shop::TopController < ApplicationController
  
   before_action :authorize_shop, only: [:edit, :update]
-  before_action :correct_user, only: [:edit]
+  before_action :correct_user, only: [:dashboard]
     
     def new
       @shop = Shop.new
@@ -31,28 +31,20 @@ class Shop::TopController < ApplicationController
     end
     end
     
-    def edit
+    def dashboard
       @shop = Shop.find(params[:id])
       @shop_contents = ShopContent.new
     end
     
-    # ShopContentModel create_action
-    def make
-      @shop_contents = ShopContent.new(make_params.merge(shop_id: current_shop.id))
-      unless @shop_contents.save
-        redirect_to shop_dashboard_path(current_shop)
-      end
-    end
+   
+   
     private 
     
     def shop_params
       params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id)
     end
 
-    def make_params
-      params.require(:shop_content).permit(:description)
-    end
-
+    
     
     
    

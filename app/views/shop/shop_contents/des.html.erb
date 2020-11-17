@@ -1,0 +1,11 @@
+<div class="container" style="width: 80%;">
+  <div class="row">
+    <%= form_with(model: @shop_content, url: shop_des_create_path, method: :post, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :descrtiption, "店舗説明"%>
+        <%= f.text_area :description, class: 'form-control', placeholder: '店舗説明をご記入ください' %>
+      </div>
+      <%= f.submit '作成', class: 'btn btn-primary btn-md'%>
+    <% end %>
+  </div>
+</div>
