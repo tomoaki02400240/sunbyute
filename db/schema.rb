@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_133138) do
+ActiveRecord::Schema.define(version: 2020_11_18_151437) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2020_11_11_133138) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_avatars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "shop_id"
+    t.text "content"
+    t.index ["shop_id"], name: "index_shop_avatars_on_shop_id"
   end
 
   create_table "shop_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_133138) do
   end
 
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "shop_avatars", "shops"
   add_foreign_key "shop_contents", "shops"
   add_foreign_key "shops", "cities"
   add_foreign_key "shops", "prefectures"

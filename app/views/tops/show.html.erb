@@ -1,2 +1,12 @@
-<%= @shop.name %>
-    
+<div class="container" style="width: 80%">
+  <div class="row">
+    <aside class="col-md-3">
+      <div id="shop_name">
+        <%= @shop.name %>
+      </div>    
+      <%= image_tag(@shop.shop_img_url) %>
+    </aside>
+    <div class="col-md-9">
+    </div>
+  </div>
+</div>

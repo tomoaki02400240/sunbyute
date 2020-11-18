@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     post "/des/create", to: "shop_contents#create", as: :des_create
     get "des/edit/:id", to: "shop_contents#edit", as: :des_edit
     post "des/update/:id", to: "shop_contents#update", as: :des_update
+    get "new/avatar", to: "shop_contents#avatar", as: :avatar
+    post "create/avatar", to: "shop_contents#avatar_process", as: :avatar_process
   end
 
   namespace :admin do

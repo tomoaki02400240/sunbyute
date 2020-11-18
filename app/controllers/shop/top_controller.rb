@@ -9,17 +9,17 @@ class Shop::TopController < ApplicationController
     
     def create
     if params[:shop][:shop_img].present?
-        @shop = Shop.new(shop_params.merge(:shop_img => params[:shop][:shop_img]))
+        @shop = Shop.new(shop_params)
         if @shop.save
           login(@shop)
           flash[:success] = "登録しました"
           redirect_to show_path(@shop)
         else
-          flash[:danger] = "登録できませんでした"
+          flash[:danger] = "登録できませんでした!!!"
           redirect_to shop_new_path
         end
     else
-      @shop = Shop.new(shop_params)
+      @shop = Shop.new(no_shop_params)
       if @shop.save
         login(@shop)
         flash[:success] = "登録しました"
@@ -29,6 +29,7 @@ class Shop::TopController < ApplicationController
         redirect_to shop_new_path
       end
     end
+    
     end
     
     def dashboard
@@ -41,9 +42,12 @@ class Shop::TopController < ApplicationController
     private 
     
     def shop_params
+      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id, :shop_img)
+    end
+    
+    def no_shop_params
       params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id)
     end
-
     
     
     

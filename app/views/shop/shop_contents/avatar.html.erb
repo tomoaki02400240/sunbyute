@@ -1,0 +1,17 @@
+<div class="ccontainer" style="width: 80%">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @shop_avatar, url: shop_avatar_process_path, method: :post, local: true) do |f| %>
+        
+        <%= f.label :avatar, '店舗紹介イメージ'%>
+        <%= f.file_field :avatar %>
+        
+        <div class="form-group">
+          <%= f.label :content, '店舗紹介'%>
+          <%= f.text_area :content, class: 'form-control', row: 5%>
+        </div>
+        <%= f.submit '掲載', class: 'btn btn-primary btn-md' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,8 @@ gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'unicorn', '5.4.1'
 gem 'carrierwave'
+# resize
+gem 'mini_magick'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -31,6 +31,26 @@ class Shop::ShopContentsController < ApplicationController
     end
   
   end  
+
+  def avatar
+    @shop_avatar = ShopAvatar.new
+  end
+
+  def avatar_process
+    avatar = params[:shop][:avatar]
+    if avatar.present?
+      @shop_avatar = ShopAvatar.new(avatar_params.merge(shop_id: current_shop.id))
+        if @shop_avatar.save?
+          flash[:success] = "写真を掲載しました"
+          redirect_to show_path(current_shop)
+        else
+          flash[:danger] = "写真を掲載できませんでした"
+          redirect_to shop_avatar_path
+        end
+    else
+      redirect_to show_path(current_shop)
+    end
+  end
   private
 
   def des_params
@@ -39,5 +59,9 @@ class Shop::ShopContentsController < ApplicationController
 
   def edit_params
     params.require(:shop_content).permit(:description)
+  end
+
+  def avatar_params
+    params.require(:shop_avatar).permit(:avatar)
   end
 end

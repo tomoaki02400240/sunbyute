@@ -1,20 +1,21 @@
 <div class="container" style="width: 80%;">
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-<%= @shop.name %> 
-<div class="des_link">
-<% if @shop.shop_contents.nil? %>
-  <%= link_to "店舗説明", shop_des_path(current_shop) %>
-<% else %>
-<% @shop.shop_contents.each do |content| %>
-  <%= link_to "店舗説明編集", shop_des_edit_path(content) %>
-<% end %>
-<% end %>
-</div>
-
-<% if logged_in_shop? %>
-<%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: '本当にログアウトしますか？' } %>
-<% end %>
-</div>
-</div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <%= link_to show_path(current_shop) do %>
+          <%= @shop.name %> 
+        <% end %>
+          <div class="des_link">
+            <% if @shop.shop_contents.nil? %>
+              <%= link_to "店舗説明", shop_des_path(current_shop) %>
+            <% else %>
+              <% @shop.shop_contents.each do |content| %>
+                <%= link_to "店舗説明編集", shop_des_edit_path(content) %>
+              <% end %>
+            <% end %>
+          </div>
+        <% if logged_in_shop? %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: '本当にログアウトしますか？' } %>
+    <% end %>
+    </div>
+  </div>
 </div>
