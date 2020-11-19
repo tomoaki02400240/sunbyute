@@ -1,6 +1,6 @@
 class Shop::TopController < ApplicationController
  
-  before_action :authorize_shop, only: [:dashboard, :update]
+  before_action :authorize_shop, only: [:dashboard, :update, :desc, :descprocess]
    
     
     def new
