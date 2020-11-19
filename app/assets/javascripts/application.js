@@ -24,3 +24,31 @@ $(document).on('turbolinks:load', function(){
         $('body').css('margin-top', height + 10)
     })
 })
+
+$(document).on('turbolinks:load', function(){
+    let prefVal = $('#shop_prefecture_id').val();
+    //一度目に検索した内容がセレクトボックスに残っている時用のif文
+    if (prefVal !== "") {
+     let selectedTemplate = $(`#city_of_prefecture${prefVal}`);
+     $('#shop_city_id').remove();
+     $('#shop_prefecture_id').after(selectedTemplate.html());
+    };
+   let defaultCitySelect = `<select name="shop_city_id" id="shop_city_id">
+   <option value>市町村を選択してください</option>
+   </select>`
+   console.log(defaultCitySelect)
+   $(document).on('change', '#shop_prefecture_id', function(){
+       let prefVal = $('#shop_prefecture_id').val()
+       console.log(prefVal);
+     //親要素のセレクトボックスが変更されてvalueに値が入ったときの処理
+     if(prefVal !== "") {
+         let selectedTemplate = $(`#city_of_prefecture${prefVal}`);
+         $('#shop_city_id').remove();
+         $('#shop_prefecture_id').after(selectedTemplate.html());
+     } else {
+         //親要素のセレクトボックスがinclude_blankの場合
+         $('#shop_ity_id').remove();
+         $('#shop_prefecture_id').after(defaultCitySelect);
+     };
+   });
+});

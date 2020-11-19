@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'mini_magick'
 gem 'unicorn', '5.4.1'
 gem 'carrierwave'
 # Use ActiveStorage variant

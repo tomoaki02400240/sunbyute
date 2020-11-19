@@ -1,0 +1,42 @@
+<div class="container" style="width: 80%;">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= form_with(model: @shop, url: shop_create_path, method: :post, local: true) do |f| %>
+      
+        <div class="form-group">
+          <%= f.label :name, '店舗名' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'メールアドレス' %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, 'パスワード' %>
+          <%= f.password_field :password, class: 'form-control'%>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'パスワード再入力'%>
+          <%= f.password_field :password_confirmation, class: 'form-control'%>
+        </div>
+      <div class="form-group">
+        <%= f.label :prefecture_id, '所属都道府県'%>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '都道府県' %>
+        <%= f.select :city_id, [], include_blank: '市町村を選択してください。' %>
+        <% Prefecture.all.each do |pref| %>
+        <template id="<%= "city_of_prefecture#{pref.id}" %>">
+          <%= f.collection_select :city_id, pref.cities, :id, :name, include_blank: '市町村選択' %>
+        </template>
+        <% end %>
+      </div>
+      
+        <%= f.label :shop_img, '店舗メイン画像' %>
+        <%= f.file_field :shop_img %>
+      
+      <%= f.submit '店舗登録', class: 'btn btn-lg btn-primary' %>
+      
+      <% end %>
+      <%= debug(params) %>
+    <div>
+  </div>
+</div>

@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   namespace :shop do
 
     get '/new', to: 'top#new'
-    get '/dashboard/:id', to: 'top#edit', as: :dashboard
-    
+    post '/create', to: 'top#create', as: :create
+    get '/dashboard/:id', to: 'top#dashboard', as: :dashboard
+    get 'description', to: 'top#desc', as: :desc
+    post 'process/description', to: 'top#descprocess', as: :descprocess
+  
   end
   
   namespace :admin do
