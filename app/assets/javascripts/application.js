@@ -21,7 +21,7 @@
 $(document).on('turbolinks:load', function(){
     $(function() {
         var height = $('#header').height();
-        $('body').css('margin-top', height + 10)
+        $('body').css('margin-top', height)
     })
 })
 
@@ -47,8 +47,12 @@ $(document).on('turbolinks:load', function(){
          $('#shop_prefecture_id').after(selectedTemplate.html());
      } else {
          //親要素のセレクトボックスがinclude_blankの場合
-         $('#shop_ity_id').remove();
+         $('#shop_city_id').remove();
          $('#shop_prefecture_id').after(defaultCitySelect);
      };
    });
 });
+
+window.setTimeout(function() {
+  $('.alert').slideUp();
+}, 3000)

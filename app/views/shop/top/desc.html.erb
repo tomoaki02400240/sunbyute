@@ -1,13 +1,1 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <%= form_with(model: @shop_desc, url: shop_descprocess_path , method: :post, local: true) do |f| %>
-        <div class="form-group">
-          <%= f.label :descrption, '店舗概要' %>
-          <%= f.text_field :description, class: 'form-control' %>
-        </div>
-          <%= f.submit '作成', class: 'btn btn-primary btn-lg' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render partial: 'shop/top/desc_form' %>

@@ -15,9 +15,12 @@ Rails.application.routes.draw do
     get '/new', to: 'top#new'
     post '/create', to: 'top#create', as: :create
     get '/dashboard/:id', to: 'top#dashboard', as: :dashboard
-    get 'description', to: 'top#desc', as: :desc
+    get 'description/:id', to: 'top#desc', as: :desc
     post 'process/description', to: 'top#descprocess', as: :descprocess
-  
+    get 'description/edit/:id', to: 'top#desc_edit', as: :descedit
+    post 'description/edit/process', to: 'top#desc_edit_process', as: :desceditprocess
+    post 'edit/shop_img/:id', to: 'top#imgprocess', as: :imgprocess
+    
   end
   
   namespace :admin do

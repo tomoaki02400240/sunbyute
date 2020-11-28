@@ -1,8 +1,8 @@
 class Shop::TopController < ApplicationController
  
   before_action :authorize_shop, only: [:dashboard, :update, :desc, :descprocess]
-   
-    
+  before_action :correct_shop, only: [:dashboard, :update, :desc]
+    #new actionはadministrator権限にする
     def new
       @shop = Shop.new
     end
@@ -15,7 +15,7 @@ class Shop::TopController < ApplicationController
           if @shop.save
             login(@shop)
             flash[:success] = "成功しました"
-            redirect_to show_path(@shop)
+            redirect_to shop_dashboard_path(@shop)
           else
             flash[:danger] = "だめ"
             redirect_to shop_new_path
@@ -25,7 +25,7 @@ class Shop::TopController < ApplicationController
           @shop = Shop.new(shop_params)
           if @shop.save
             flash[:success] = "店舗ページ作成"
-            redirect_to show_path(@shop)
+            redirect_to shop_dashboard_path(@shop)
           else
             flash[:danger] = "作成できませんでした"
             redirect_to shop_new_path
@@ -39,12 +39,11 @@ class Shop::TopController < ApplicationController
     end
     
     def desc
-      @shop_desc = ShopDesc.new(desc_params)
+      @shop_desc = ShopDesc.new
     end
     
     def descprocess
       @shop_desc = ShopDesc.new(desc_params.merge(shop_id: current_shop.id))
-    binding.remote_pry
       if @shop_desc.save
         flash[:success] = "店舗概要を作成しました"
         redirect_to show_path(current_shop)
@@ -52,9 +51,36 @@ class Shop::TopController < ApplicationController
         flash[:danger] = "店舗概要を作成できませんでした"
         redirect_to shop_desc_path
       end
-      
     end
     
+    def imgprocess
+      shop = Shop.find_by(id: current_shop.id)
+      shop_img = params[:shop][:shop_img]
+     if shop.update(shop_img: shop_img)
+       flash[:success] = "画像を変更しました"
+       redirect_to shop_dashboard_path(current_shop)
+     else
+       flash[:danger] = "画像を変更できませんでした"
+       redirect_to shop_dashboard_path(current_shop)
+     end
+    end
+    
+    def desc_edit
+      @shop_desc = ShopDesc.find(params[:id])
+    end
+    
+    def desc_edit_process
+      @shop_desc = ShopDesc.find_by(shop_id: current_shop.id)
+      if @shop_desc.update(desc_params.merge(shop_id: current_shop.id))
+        
+        flash[:success] = "変更しました"
+        redirect_to shop_dashboard_path(current_shop)
+      else
+        flash[:danger] = "変更できませんでした"
+        redirect_to desc_edit_path(current_shop)
+       
+      end
+    end
     
     private 
     
@@ -63,8 +89,11 @@ class Shop::TopController < ApplicationController
     end
     
     def desc_params
-      params.require(:shop_desc).permit(:description,:shop_id)
+     params.require(:shop_desc).permit(:description, :shop_id)
     end
+    
+    
+    
     
    
 end

@@ -19,6 +19,13 @@ module SessionsHelper
       !!current_shop
     end
     
+    def correct_shop
+      @shop = Shop.find_by(id: params[:id])
+      unless @shop.id === current_shop.id
+        redirect_to shop_dashboard_path(current_shop)
+      end
+    end
+    
     def shop_log_out
       session.delete(:user_id)
       @current_shop = nil
