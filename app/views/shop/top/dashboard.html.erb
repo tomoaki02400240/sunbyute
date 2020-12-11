@@ -25,6 +25,19 @@
             <i class="fa fa-camera"></i>
           <% end %>
         </div>
+        
+        <div class="shop_product">
+          <%= link_to "取り扱い商品登録", shop_product_path(current_shop) %>
+          <p>現在の取り扱い商品一覧</p>
+          <ul>
+            <% current_shop.products.each do |product| %>
+              <li>
+                <%= product.name %>
+              </li>
+            <%= link_to '削除', shop_product_delete_path(product), method: :delete %>
+            <% end %>
+          </ul>
+        </div>
           <% if logged_in_shop? %>
             <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: '本当にログアウトしますか？' } %>
           <% end %>

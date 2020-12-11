@@ -56,3 +56,10 @@ $(document).on('turbolinks:load', function(){
 window.setTimeout(function() {
   $('.alert').slideUp();
 }, 3000)
+
+$(document).on('turbolinks:load', function(){
+   
+    $(document).ready(function(e) {
+        $('img[usemap]').rwdImageMaps();
+    });
+})

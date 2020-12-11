@@ -10,7 +10,10 @@
 }
 
 
-
+.map_image {
+  width: 100%;
+  object-fit: contain;
+}
  //   img[usemap] {
    //  max-width: 100%;
      // height: auto;

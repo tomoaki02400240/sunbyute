@@ -8,17 +8,25 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<%= link_to "#" do %>
-						 <h3>E-薬局<span id="site-logo">〜薬局から始める健康作り〜</span></h3>
+						<%= link_to root_path do %>
+							<%= image_tag '/top_images/e_logo_03.png', class: 'logologo', height: "50px" %>
 						<% end %>
 					</div>
 					
 					<div class="collapse navbar-collapse" id="navbarEexample">
+						<% if logged_in_shop? %>
+							<ul class="nav navbar-nav">
+								<li><%= link_to 'ダッシュボード', shop_dashboard_path(current_shop) %></li>
+								<li><%= link_to '店舗ページ', show_path(current_shop) %></li>
+								<li><%= link_to 'ログアウト', logout_path, method: :delete, data: { confrim: '本当にログアウトしますか？' } %></li>
+							</ul>
+						<% else %>
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">地域から探す</a></li>
-							<li><a href="#">相談内容から探す</a></li>
-							<li><a href="#">リモート対応から探す</a></li>
+							<li class="active"><%= link_to root_path do %>Home<% end %></li>
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Contact</a></li>
 						</ul>
+						<% end %>
 						<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="検索キーワード">

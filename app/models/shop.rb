@@ -4,6 +4,7 @@ class Shop < ApplicationRecord
   belongs_to :prefecture
   belongs_to :city
   has_one :shop_desc
+  has_many :products
   EMAIL_VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name,     presence: true, length: { maximum: 50 }, on: :create
   validates :name,     presence: true, on: :update, allow_blank: true
@@ -14,3 +15,4 @@ class Shop < ApplicationRecord
   has_secure_password
   
 end
+

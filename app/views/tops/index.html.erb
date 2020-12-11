@@ -1,13 +1,56 @@
 
       <div class="image_wrap">
           <div class="top_image">
-              <%= image_tag '/top_images/kanpou_toppage.jpg' %>
-          </div>
-          <div class="site_description">
-              <h1>E-薬局</h1>
-              <p>体のこと、健康のことを相談できる薬局があなたの近くにきっとあります。</p>
-              <p>お一人で悩まないで、相談してみてください。</p>
+              <%= image_tag '/top_images/main_image.png' %>
           </div>
       </div>
-  
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 contents_menu">
+            <div class="card card-default">
+              <div class="card-header">
+                取り扱い商品から検索
+              </div>
+              <div class="card-img">
+                <%= image_tag('/top_images/shop_detail_20.jpg') %>
+              </div>
+              <div class="card-body">
+                <h4>取り扱い商品から検索</h4>
+                <p>どこで売っているかわからない<br>
+                時はこちらから検索</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 contents_menu">
+            <div class="card card-default">
+              <div class="card-header">
+                近隣の相談薬局・薬店を探す
+              </div>
+              <div class="card-img">
+                <%= image_tag '/top_images/shop_detail_20.jpg' %>
+              </div>
+              <div class="card-body">
+                <h4>近隣から検索</h4>
+                <p>どこで相談するか迷ったらこちらから検索</p>
+                <%= link_to '検索', search_pharmacy_path, class: 'btn btn-primary btn-lg' %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 contents_menu">
+            <div class="card card-default">
+              <div class="card-header">
+                相談内容
+              </div>
+              <div class="card-img">
+                <%= image_tag('/top_images/shop_detail_20.jpg') %>
+              </div>
+              <div class="card-body">
+                <h4>相談内容から探す</h4>
+                <p>自分1人だと思うその前に同じように悩んでいた人の体験や
+                症状を改善した方法を探してみよう</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 

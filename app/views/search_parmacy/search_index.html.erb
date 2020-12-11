@@ -1,20 +1,32 @@
-<div class="container" style="width: 80%;">
+<div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <h3 style="background: url('/top_images/todo_back.gif');">都道府県から探す</h3>
-                <div class="box">
-                    <%= render partial: 'search_parmacy/map' %>
+            <% if @prefectures.present? %>
+                <% @prefectures.each do |prefecture| %>
+                <%= prefecture.name %>
+                    <% prefecture.shops.each do |shop| %>
+                        <%= shop.name %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <div class="card">
+                    <h3 style="background: url('/top_images/todo_back.gif');">都道府県から探す</h3>
+                    <div class="box">
+                        <%= render partial: 'search_parmacy/map' %>
+                    </div>
                 </div>
-            </div>
+            <% end %>
         </div>
         <div class="col-md-6">
             <div class="detail_search">
-                
+               <%= form_with url: search_pharmacy_path, scope: :search, method: :get, local: true, html: { class: 'detail_search'} do |f| %>
+                   <div class="pref_search form-group">
+                      <%= f.collection_select :prefecture, Prefecture.all, :id, :name %>
+                   </div>
+                   <!-- <%= f.submit '検索', class: 'btn btn-primary, btn-lg' %> -->
+                <% end %>
             </div>
-            <div class="keyword_search">
-                
-            </div>
+            
         </div>
     </div>
 </div>

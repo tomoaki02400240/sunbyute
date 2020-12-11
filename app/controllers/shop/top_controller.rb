@@ -82,6 +82,45 @@ class Shop::TopController < ApplicationController
       end
     end
     
+    def product
+      @product = Product.new
+    end
+    
+    def product_process
+     
+      product_img = params[:product][:product_image]
+      if product_img.blank?
+         @product = Product.new(product_params.merge(shop_id: current_shop.id))
+        if @product.save
+          flash[:success] = "登録しました（写真はデフォルト）"
+          redirect_to shop_dashboard_path(current_shop)
+        else
+          flash[:danger] = "登録できませんでした"
+          render 'product'
+        end
+      else
+        @product = Product.new(product_params.merge(shop_id: current_shop.id, product_image: product_img))
+        if @product.save
+          flash[:success] = "登録しました"
+          redirect_to shop_dashboard_path(current_shop)
+        else
+          flash[:danger] = "登録できませんでした"
+          render 'product'
+        end
+      end
+    end
+    
+    def product_delete
+      @product = Product.find(params[:id])
+      if @product.destroy
+        flash[:success] = "削除しました"
+        redirect_to shop_dashboard_path(current_shop)
+      else
+        flash[:danger] = "削除できませんでした"
+        render 'dashboard'
+      end
+    end
+    
     private 
     
     def shop_params
@@ -92,7 +131,9 @@ class Shop::TopController < ApplicationController
      params.require(:shop_desc).permit(:description, :shop_id)
     end
     
-    
+    def product_params
+      params.require(:product).permit(:name, :description)
+    end
     
     
    
