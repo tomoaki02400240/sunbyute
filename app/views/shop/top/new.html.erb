@@ -1,8 +1,13 @@
 <div class="container" style="width: 80%;">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+<<<<<<< HEAD
       <%= form_with(model: @shop, url: shop_create_path, method: :post, local: true) do |f| %>
       
+=======
+      <%= form_with(model: @shop, url: shop_create_path, method: :post) do |f| %>
+      <%render partial: 'layouts/error_messages' %>
+>>>>>>> 1dc7385d28732438a05c4f5d553bec4f306a5f4e
         <div class="form-group">
           <%= f.label :name, '店舗名' %>
           <%= f.text_field :name, class: 'form-control' %>
@@ -39,4 +44,8 @@
       <%= debug(params) %>
     <div>
   </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 1dc7385d28732438a05c4f5d553bec4f306a5f4e

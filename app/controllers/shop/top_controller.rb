@@ -1,13 +1,20 @@
 class Shop::TopController < ApplicationController
  
+<<<<<<< HEAD
   before_action :authorize_shop, only: [:dashboard, :update, :desc, :descprocess]
   before_action :correct_shop, only: [:dashboard, :update, :desc]
     #new actionはadministrator権限にする
+=======
+  before_action :authorize_shop, only: [:edit, :update]
+  before_action :correct_user, only: [:dashboard]
+    
+>>>>>>> 1dc7385d28732438a05c4f5d553bec4f306a5f4e
     def new
       @shop = Shop.new
     end
     
     def create
+<<<<<<< HEAD
       
       shop_img = params[:shop][:shop_img]
       if shop_img.present?
@@ -119,11 +126,43 @@ class Shop::TopController < ApplicationController
         flash[:danger] = "削除できませんでした"
         render 'dashboard'
       end
+=======
+    if params[:shop][:shop_img].present?
+        @shop = Shop.new(shop_params)
+        if @shop.save
+          login(@shop)
+          flash[:success] = "登録しました"
+          redirect_to show_path(@shop)
+        else
+          flash[:danger] = "登録できませんでした!!!"
+          redirect_to shop_new_path
+        end
+    else
+      @shop = Shop.new(no_shop_params)
+      if @shop.save
+        login(@shop)
+        flash[:success] = "登録しました"
+        redirect_to show_path(@shop)
+      else
+        flash.now[:danger] = "登録できませんでした"
+        redirect_to shop_new_path
+      end
     end
     
+    end
+    
+    def dashboard
+      @shop = Shop.find(params[:id])
+      @shop_contents = ShopContent.new
+>>>>>>> 1dc7385d28732438a05c4f5d553bec4f306a5f4e
+    end
+    
+   
+   
     private 
     
     def shop_params
+<<<<<<< HEAD
       params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id)
     end
     
@@ -134,6 +173,15 @@ class Shop::TopController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description)
     end
+=======
+      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id, :shop_img)
+    end
+    
+    def no_shop_params
+      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :prefecture_id, :city_id)
+    end
+    
+>>>>>>> 1dc7385d28732438a05c4f5d553bec4f306a5f4e
     
     
    

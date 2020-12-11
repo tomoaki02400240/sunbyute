@@ -23,7 +23,9 @@ $(document).on('turbolinks:load', function(){
         var height = $('#header').height();
         $('body').css('margin-top', height)
     })
+
 })
+
 
 $(document).on('turbolinks:load', function(){
     let prefVal = $('#shop_prefecture_id').val();
@@ -47,6 +49,7 @@ $(document).on('turbolinks:load', function(){
          $('#shop_prefecture_id').after(selectedTemplate.html());
      } else {
          //親要素のセレクトボックスがinclude_blankの場合
+
          $('#shop_city_id').remove();
          $('#shop_prefecture_id').after(defaultCitySelect);
      };

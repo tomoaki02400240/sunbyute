@@ -10,26 +10,22 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
+  
   namespace :shop do
+    get "/new", to: "top#new"
+    get "/dashboard/:id", to: "top#dashboard", as: :dashboard
+    post "/create", to: "top#create", as: :create
+    get "/des/:id", to: "shop_contents#des", as: :des
+    post "/des/create", to: "shop_contents#create", as: :des_create
+    get "des/edit/:id", to: "shop_contents#edit", as: :des_edit
+    post "des/update/:id", to: "shop_contents#update", as: :des_update
+    get "new/avatar", to: "shop_contents#avatar", as: :avatar
+    post "create/avatar", to: "shop_contents#avatar_process", as: :avatar_process
+  end
 
-    get '/new', to: 'top#new'
-    post '/create', to: 'top#create', as: :create
-    get '/dashboard/:id', to: 'top#dashboard', as: :dashboard
-    get 'description/:id', to: 'top#desc', as: :desc
-    post 'process/description', to: 'top#descprocess', as: :descprocess
-    get 'description/edit/:id', to: 'top#desc_edit', as: :descedit
-    post 'description/edit/process', to: 'top#desc_edit_process', as: :desceditprocess
-    post 'edit/shop_img/:id', to: 'top#imgprocess', as: :imgprocess
-    get 'product', to: 'top#product', as: :product
-    post 'create/product', to: 'top#product_process', as: :product_create
-    delete 'delete/:id',to: 'top#product_delete', as: :product_delete
-    
-  end
-  
   namespace :admin do
-    root to: 'top#index'
-    get 'sign_up', to: 'top#new', as: :new
-    post 'create', to: 'top#create'
+    root to: "top#index"
+    get "sign_up", to: "top#new", as: :new
+    post "create", to: "top#create"
   end
-  
 end
